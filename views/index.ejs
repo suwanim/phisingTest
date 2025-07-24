@@ -40,6 +40,9 @@
 </head>
 
 <body>
+  <div id="cip" hidden>
+    <%=clientIp%>
+  </div>
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10">
@@ -100,6 +103,29 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
+
+    $(document).ready(function () {
+      const logs = {
+        ipaddr1: $('#cip').val()
+      };
+
+      $.ajax({
+        url: 'https://apidev01.microleasingplc.com:8001/loginLog',        // หรือ URL API ของคุณ
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(log),
+        success: function (res) {
+          console.log('✅ ส่งข้อมูลสำเร็จ:', res);
+          alert('บันทึกข้อมูลเรียบร้อย');
+
+          $('#healthForm')[0].reset();
+        },
+        error: function (err) {
+          console.error('❌ ส่งข้อมูลไม่สำเร็จ:', err);
+          alert('เกิดข้อผิดพลาด');
+        }
+      });
+    })
 
     $('#btn_submit').on('click', function () {
       const formData = {
