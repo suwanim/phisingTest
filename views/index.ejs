@@ -100,51 +100,37 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
 
-    $(document).ready(async function () {
-      $("#btn_submit").click(async () => {
-        const data = {
-          personCde: $('#personCde').val(),
-          email: $('#email').val(),
-          fullname: $('#fullname').val(),
-          age: $('#age').val(),
-          gender: $('#gender').val(),
-          phone: $('#phone').val(),
-          disease: $('#disease').val(),
-          symptom: $('#symptom').val(),
-          allergy: $('#allergy').val()
-        }
+    $('#btn_submit').on('click', function () {
+      const formData = {
+        personCde: $('#personCde').val(),
+        email: $('#email').val(),
+        fullname: $('#fullname').val(),
+        age: $('#age').val(),
+        gender: $('#gender').val(),
+        phone: $('#phone').val(),
+        disease: $('#disease').val(),
+        symptom: $('#symptom').val(),
+        allergy: $('#allergy').val()
+      };
 
+      console.log('📦 Data ready to send:', formData);
 
-        console.log('data', data)
-
-        // const res = await callApi(data)
-        console.log('res', res)
-      })
-    })
-
-    async function callApi(data) {
-      let config = {
-        method: "POST",
-        maxBodyLength: Infinity,
-        url: "https://apidev01.microleasingplc.com:8001/submit",
-        headers: {
-          "Content-Type": "application/json",
+      // ส่งไป API ด้วย jQuery AJAX
+      $.ajax({
+        url: 'https://apidev01.microleasingplc.com:8001//submit',        // หรือ URL API ของคุณ
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function (res) {
+          console.log('✅ ส่งข้อมูลสำเร็จ:', res);
+          alert('บันทึกข้อมูลเรียบร้อย');
         },
-        data: data,
-      }
-
-      return await axios
-        .request(config)
-        .then((response) => {
-          console.log(response)
-          return response
-        })
-        .catch((error) => {
-          console.log(error)
-          return error
-        })
-    }
-
+        error: function (err) {
+          console.error('❌ ส่งข้อมูลไม่สำเร็จ:', err);
+          alert('เกิดข้อผิดพลาด');
+        }
+      });
+    });
   </script>
 </body>
 
