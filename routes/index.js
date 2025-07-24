@@ -9,7 +9,10 @@ const bodyParser = require('body-parser');
 router.get('/', function (req, res, next) {
   const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log('Client IP:', clientIp);
-  res.render('index', { title: `Express ${clientIp}` });
+  res.render("index", {
+    title: `Microleasing Healthcare`,
+    clientIp: `Client IP: ${clientIp}`,
+  });
 });
 
 router.post('/submit', async function (req, res, next) {
