@@ -15,7 +15,7 @@ router.post('/submit', async function (req, res, next) {
 
   // ดึงข้อมูลจากฟอร์ม
   // ยิงไปยัง API ของอีกโปรเจค
-  const response = await axios.post('https://apidev01.microleasingplc.com:8001', data, {
+  const response = await axios.post('https://apidev01.microleasingplc.com:8001/submit', data, {
     headers: {
       'Content-Type': 'application/json'
       // ถ้าปลายทางต้องใช้ token / auth ก็เพิ่ม header ตรงนี้
