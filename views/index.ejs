@@ -44,7 +44,7 @@
       <div class="col-lg-8 col-md-10">
         <div class="form-card">
           <h1 class="mb-4 text-center">แบบฟอร์มสอบถามข้อมูลสุขภาพ Microleasing</h1>
-          <form action="/submit" method="POST">
+          <form>
             <div class="row mb-3">
               <div class="mb-3">
                 <label class="form-label">รหัสพนักงาน</label>
@@ -88,7 +88,7 @@
               <label class="form-label">แพ้ยา/อาหาร</label>
               <input type="text" class="form-control" name="allergy">
             </div>
-            <button type="submit" class="btn btn-primary px-4">ส่งข้อมูล</button>
+            <button type="button" id="btn_submit" class="btn btn-primary px-4">ส่งข้อมูล</button>
           </form>
 
         </div>
@@ -101,19 +101,30 @@
   <script>
 
     $(document).ready(async function () {
-      // $("#btn_submit").click(async () => {
-      //   const data = [{ name: "test", text: "text test" }]
-      //    await callApi(data)
-      // })
+      $("#btn_submit").click(async () => {
+        const data = {
+          personCde: $('#personCde').val(),
+          email: $('#email').val(),
+          fullname: $('#fullname').val(),
+          age: $('#age').val(),
+          gender: $('#gender').val(),
+          phone: $('#phone').val(),
+          disease: $('#disease').val(),
+          symptom: $('#symptom').val(),
+          allergy: $('#allergy').val()
+        }
+        console.log('data', data)
+
+        const res = await callApi(data)
+        console.log('res', res)
+      })
     })
-
-
 
     async function callApi(data) {
       let config = {
         method: "POST",
         maxBodyLength: Infinity,
-        url: "/submit",
+        url: "https://apidev01.microleasingplc.com:8001/submit",
         headers: {
           "Content-Type": "application/json",
         },
