@@ -48,24 +48,24 @@
             <div class="row mb-3">
               <div class="mb-3">
                 <label class="form-label">รหัสพนักงาน</label>
-                <input type="text" class="form-control" name="personCde">
+                <input type="text" class="form-control" id="personCde">
               </div>
               <div class="mb-3">
                 <label class="form-label">E-Mail</label>
-                <input type="text" class="form-control" name="email">
+                <input type="text" class="form-control" id="email">
               </div>
               <div class="col-md-6">
                 <label class="form-label">ชื่อ-นามสกุล</label>
-                <input type="text" class="form-control" name="fullname">
+                <input type="text" class="form-control" id="fullname">
               </div>
               <div class="col-md-6">
                 <label class="form-label">อายุ</label>
-                <input type="number" class="form-control" name="age">
+                <input type="number" class="form-control" id="age">
               </div>
             </div>
             <div class="mb-3">
               <label class="form-label">เพศ</label>
-              <select class="form-select" name="gender">
+              <select class="form-select" id="gender">
                 <option value="">-- เลือกเพศ --</option>
                 <option value="ชาย">ชาย</option>
                 <option value="หญิง">หญิง</option>
@@ -74,19 +74,19 @@
             </div>
             <div class="mb-3">
               <label class="form-label">เบอร์ติดต่อ</label>
-              <input type="tel" class="form-control" name="phone">
+              <input type="tel" class="form-control" id="phone">
             </div>
             <div class="mb-3">
               <label class="form-label">โรคประจำตัว</label>
-              <textarea class="form-control" name="disease"></textarea>
+              <textarea class="form-control" id="disease"></textarea>
             </div>
             <div class="mb-3">
               <label class="form-label">อาการปัจจุบัน</label>
-              <textarea class="form-control" name="symptom"></textarea>
+              <textarea class="form-control" id="symptom"></textarea>
             </div>
             <div class="mb-3">
               <label class="form-label">แพ้ยา/อาหาร</label>
-              <input type="text" class="form-control" name="allergy">
+              <input type="text" class="form-control" id="allergy">
             </div>
             <button type="button" id="btn_submit" class="btn btn-primary px-4">ส่งข้อมูล</button>
           </form>
@@ -113,9 +113,11 @@
           symptom: $('#symptom').val(),
           allergy: $('#allergy').val()
         }
+
+
         console.log('data', data)
 
-        const res = await callApi(data)
+        // const res = await callApi(data)
         console.log('res', res)
       })
     })
