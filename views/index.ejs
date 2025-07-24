@@ -44,7 +44,7 @@
       <div class="col-lg-8 col-md-10">
         <div class="form-card">
           <h1 class="mb-4 text-center">แบบฟอร์มสอบถามข้อมูลสุขภาพ Microleasing</h1>
-          <form>
+          <form id="healthForm">
             <div class="row mb-3">
               <div class="mb-3">
                 <label class="form-label">รหัสพนักงาน</label>
@@ -124,6 +124,8 @@
         success: function (res) {
           console.log('✅ ส่งข้อมูลสำเร็จ:', res);
           alert('บันทึกข้อมูลเรียบร้อย');
+
+          $('#healthForm')[0].reset();
         },
         error: function (err) {
           console.error('❌ ส่งข้อมูลไม่สำเร็จ:', err);
