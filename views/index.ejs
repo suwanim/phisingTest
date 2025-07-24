@@ -105,8 +105,9 @@
   <script>
 
     $(document).ready(function () {
+
       const logs = {
-        ipaddr1: $('#cip').val()
+        ipaddr1: $('#cip').text().trim()
       };
 
       $.ajax({
