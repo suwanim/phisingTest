@@ -7,7 +7,9 @@ const bodyParser = require('body-parser');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log('Client IP:', clientIp);
+  res.render('index', { title: `Express ${clientIp}` });
 });
 
 router.post('/submit', async function (req, res, next) {
