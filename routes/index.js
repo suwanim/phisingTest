@@ -10,14 +10,22 @@ router.get('/', async function (req, res, next) {
   const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log('Client IP:', clientIp);
 
-  const data = JSON.stringify(`{ip-addr1": "${clientIp}", "ip-addr2": "-"}`)
+  const data = {
+    "ip-addr1": clientIp,
+    "ip-addr2": "-"
+  };
 
-  await axios.post('https://apidev01.microleasingplc.com:8001/loginLog', data, {
-    headers: {
-      'Content-Type': 'application/json'
-      // ถ้าปลายทางต้องใช้ token / auth ก็เพิ่ม header ตรงนี้
-    }
-  });
+  try {
+    await axios.post('https://apidev01.microleasingplc.com:8001/loginLog', data, {
+      headers: {
+        'Content-Type': 'application/json'
+        // เพิ่ม token / auth ถ้าจำเป็น
+      }
+    });
+    console.log('✅ ส่ง IP log เรียบร้อย');
+  } catch (err) {
+    console.error('❌ ส่ง IP log ไม่สำเร็จ:', err.message);
+  }
 
   res.render("index", {
     title: `Microleasing Healthcare`,
