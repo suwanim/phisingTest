@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ฟอร์มสอบถามข้อมูลสุขภาพ</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+      font-family: "Sarabun", sans-serif;
+    }
+
+    .form-card {
+      background: #ffffffdd;
+      border-radius: 1rem;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+
+    h1 {
+      font-weight: 700;
+      color: #6a1b9a;
+    }
+
+    .btn-primary {
+      background-color: #8e24aa;
+      border-color: #8e24aa;
+    }
+
+    .btn-primary:hover {
+      background-color: #6a1b9a;
+      border-color: #6a1b9a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="form-card">
+          <h1 class="mb-4 text-center">แบบฟอร์มสอบถามข้อมูลสุขภาพ</h1>
+          <form action="/submit" method="POST">
+            <div class="row mb-3">
+              <div class="mb-3">
+                <label class="form-label">รหัสพนักงาน</label>
+                <input type="text" class="form-control" name="personCde">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">E-Mail</label>
+                <input type="text" class="form-control" name="email">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">ชื่อ-นามสกุล</label>
+                <input type="text" class="form-control" name="fullname">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">อายุ</label>
+                <input type="number" class="form-control" name="age">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">เพศ</label>
+              <select class="form-select" name="gender">
+                <option value="">-- เลือกเพศ --</option>
+                <option value="ชาย">ชาย</option>
+                <option value="หญิง">หญิง</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">เบอร์ติดต่อ</label>
+              <input type="tel" class="form-control" name="phone">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">โรคประจำตัว</label>
+              <textarea class="form-control" name="disease"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">อาการปัจจุบัน</label>
+              <textarea class="form-control" name="symptom"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">แพ้ยา/อาหาร</label>
+              <input type="text" class="form-control" name="allergy">
+            </div>
+            <button type="submit" class="btn btn-primary px-4">ส่งข้อมูล</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+
+    $(document).ready(async function () {
+      // $("#btn_submit").click(async () => {
+      //   const data = [{ name: "test", text: "text test" }]
+      //    await callApi(data)
+      // })
+    })
+
+
+
+    async function callApi(data) {
+      let config = {
+        method: "POST",
+        maxBodyLength: Infinity,
+        url: "/save",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      }
+
+      return await axios
+        .request(config)
+        .then((response) => {
+          console.log(response)
+          return response
+        })
+        .catch((error) => {
+          console.log(error)
+          return error
+        })
+    }
+
+  </script>
+</body>
+
+</html>

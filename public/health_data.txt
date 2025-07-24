@@ -1,0 +1,3 @@
+{"fullname":"","age":"","gender":"","phone":"","disease":"","symptom":"","allergy":""},
+{"fullname":"","age":"","gender":"","phone":"","disease":"","symptom":"","allergy":""},
+{"personCde":"666","email":"666","fullname":"6","age":"","gender":"ชาย","phone":"5trfb","disease":"fghfg","symptom":"fgng","allergy":"jnhg"},
